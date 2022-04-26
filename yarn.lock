@@ -49,6 +49,11 @@
     "globby" "^11.0.4"
     "typescript" "^4.3.2"
 
+"@lion/ajax@^0.14.0":
+  "integrity" "sha512-gY/MbEcl0yrZgtbkTNRMOom3E7FI/h+2wEtZhKL4QD1lg54fo7J741YY4gwtY38jH8eIDafmTsIEBk/HwM5RFw=="
+  "resolved" "https://registry.npmjs.org/@lion/ajax/-/ajax-0.14.0.tgz"
+  "version" "0.14.0"
+
 "@lion/button@^0.17.0":
   "integrity" "sha512-QVgAp4N16qs15+9RK1Bl77Qz+jRI/wFE+MUDIoWeksX5tNus6fVbnLorR7FR1rxp1oMty53kVmRnLbmxbtQcCw=="
   "resolved" "https://registry.npmjs.org/@lion/button/-/button-0.17.0.tgz"
@@ -56,7 +61,7 @@
   dependencies:
     "@lion/core" "^0.22.0"
 
-"@lion/core@^0.22.0":
+"@lion/core@^0.22.0", "@lion/core@0.22.0":
   "integrity" "sha512-qgIRqp77UtMFi9PDxS6EE5xT6djqJ6qWNKur08mnKNNIg9NtVUeGSpSLGuMeZs+lI1To+n9/DrOsbSpJ0xUKIQ=="
   "resolved" "https://registry.npmjs.org/@lion/core/-/core-0.22.0.tgz"
   "version" "0.22.0"
@@ -65,13 +70,36 @@
     "@open-wc/scoped-elements" "^2.1.1"
     "lit" "^2.0.2"
 
-"@lion/form-core@^0.17.0":
+"@lion/dialog@^0.15.0":
+  "integrity" "sha512-WDdyUK7r6OkZ49QC/VVnH/whAJc63bVU827oHbwpDMJHrJxILMwtTLtOJ2G2v4xavjeUy7+acjrjiIIPPEWO7A=="
+  "resolved" "https://registry.npmjs.org/@lion/dialog/-/dialog-0.15.0.tgz"
+  "version" "0.15.0"
+  dependencies:
+    "@lion/core" "^0.22.0"
+    "@lion/overlays" "^0.32.0"
+
+"@lion/fieldset@^0.21.0":
+  "integrity" "sha512-Sl+JHCGECvN0EuVmG0pKbBEvYUclmD7Rh1I0ye4631NVZHAi7L0RgAAx9RtTKsD2AgLJ9AZ99XY4UPu7KezCtg=="
+  "resolved" "https://registry.npmjs.org/@lion/fieldset/-/fieldset-0.21.0.tgz"
+  "version" "0.21.0"
+  dependencies:
+    "@lion/core" "^0.22.0"
+    "@lion/form-core" "^0.17.0"
+
+"@lion/form-core@^0.17.0", "@lion/form-core@0.17.0":
   "integrity" "sha512-YSe/BcbY9TCTlW4Ua3FPUpvXpIrm3nxtPjoPGd6zk6Gg35uUgTxTwlnlA6gBGAiQgod/qdM29KEOzM+KnhWYsg=="
   "resolved" "https://registry.npmjs.org/@lion/form-core/-/form-core-0.17.0.tgz"
   "version" "0.17.0"
   dependencies:
     "@lion/core" "^0.22.0"
     "@lion/localize" "^0.24.0"
+
+"@lion/form@^0.14.0":
+  "integrity" "sha512-2q7mQURIL8YOSfzXyNHEO2WHV7gSubDgT/9xhGSnwSWWfDKklqILg6ec08yhLYDmrJGYjSHyOcJI0LVmu0fJIA=="
+  "resolved" "https://registry.npmjs.org/@lion/form/-/form-0.14.0.tgz"
+  "version" "0.14.0"
+  dependencies:
+    "@lion/fieldset" "^0.21.0"
 
 "@lion/icon@^0.15.0":
   "integrity" "sha512-RdYvBWCOrIAfyMuhPvdeodlHjgws9omBeKSPj4RLNKfiWu+Lp+VqgVkw6OeCgXLofKk4952W3Wz4Y15IDnyGRQ=="
@@ -81,14 +109,24 @@
     "@lion/core" "^0.22.0"
     "singleton-manager" "^1.4.3"
 
-"@lion/input@^0.17.0":
+"@lion/input-tel@^0.1.0":
+  "integrity" "sha512-/RfbOOp83d+fMxJz/T467SHG0Q/zjKAw0JvKlxuKGtlm+9DlY74TIU7AKd/FG26ubAiGRtEjZHz1VgpJdhptcw=="
+  "resolved" "https://registry.npmjs.org/@lion/input-tel/-/input-tel-0.1.1.tgz"
+  "version" "0.1.1"
+  dependencies:
+    "@lion/core" "0.22.0"
+    "@lion/form-core" "0.17.0"
+    "@lion/input" "0.17.0"
+    "@lion/localize" "0.24.0"
+
+"@lion/input@^0.17.0", "@lion/input@0.17.0":
   "integrity" "sha512-8r3qDAI/qIf5EIMNCl8yacB4e2e5EM8RJJaRCFlJM9EJPihiBJ2YdozQPLMyiUM+JDzfsSGKCdO6WICn+7lc6g=="
   "resolved" "https://registry.npmjs.org/@lion/input/-/input-0.17.0.tgz"
   "version" "0.17.0"
   dependencies:
     "@lion/form-core" "^0.17.0"
 
-"@lion/localize@^0.24.0":
+"@lion/localize@^0.24.0", "@lion/localize@0.24.0":
   "integrity" "sha512-LVTiupjMJFHNblJiw2naKWyxw8J8yw7F4ftywbasrYu0ejlGpqWFsI1jINY7oMGGnlgYUPSuu7NFpiyUsOsuvg=="
   "resolved" "https://registry.npmjs.org/@lion/localize/-/localize-0.24.0.tgz"
   "version" "0.24.0"
@@ -96,6 +134,34 @@
     "@bundled-es-modules/message-format" "6.0.4"
     "@lion/core" "^0.22.0"
     "singleton-manager" "^1.4.3"
+
+"@lion/overlays@^0.32.0":
+  "integrity" "sha512-VyHilarcgWYYM+NDNXxuAiAT8EHipJUHNiaV85OLzwgqqMFC5TsG9wyekqj5iu3mk96R4s/RU1gjqfR9O88INQ=="
+  "resolved" "https://registry.npmjs.org/@lion/overlays/-/overlays-0.32.0.tgz"
+  "version" "0.32.0"
+  dependencies:
+    "@lion/core" "^0.22.0"
+    "@popperjs/core" "^2.5.4"
+    "singleton-manager" "^1.4.3"
+
+"@lion/textarea@^0.15.0":
+  "integrity" "sha512-blWqxnT2EXv/+cmJ/fRrlzkS9np8t+rdNoIsLp26ftN1Mpzpm0ITu2cOPOIGZLAINfhICAiH/8IoMJYcmk5/yA=="
+  "resolved" "https://registry.npmjs.org/@lion/textarea/-/textarea-0.15.0.tgz"
+  "version" "0.15.0"
+  dependencies:
+    "@lion/core" "^0.22.0"
+    "@lion/form-core" "^0.17.0"
+    "@types/autosize" "^3.0.7"
+    "autosize" "4.0.2"
+
+"@lion/validate-messages@^0.9.0":
+  "integrity" "sha512-iMrrVmMvK7h1rnY1n4QXx8mkEN4u8dsL7pT/arT89OijkQMwSa/wNOetmuTNeVm5vCSMFZiqMDSwME/ZHw1eTw=="
+  "resolved" "https://registry.npmjs.org/@lion/validate-messages/-/validate-messages-0.9.0.tgz"
+  "version" "0.9.0"
+  dependencies:
+    "@lion/form-core" "^0.17.0"
+    "@lion/input-tel" "^0.1.0"
+    "@lion/localize" "^0.24.0"
 
 "@lit/reactive-element@^1.0.0", "@lit/reactive-element@^1.3.0":
   "integrity" "sha512-nOJARIr3pReqK3hfFCSW2Zg/kFcFsSAlIE7z4a0C9D2dPrgD/YSn3ZP2ET/rxKB65SXyG7jJbkynBRm+tGlacw=="
@@ -136,6 +202,11 @@
     "@lit/reactive-element" "^1.0.0"
     "@open-wc/dedupe-mixin" "^1.3.0"
 
+"@popperjs/core@^2.5.4":
+  "integrity" "sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw=="
+  "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.5.tgz"
+  "version" "2.11.5"
+
 "@reduxjs/toolkit@^1.8.1":
   "integrity" "sha512-Q6mzbTpO9nOYRnkwpDlFOAbQnd3g7zj7CtHAZWz5SzE5lcV97Tf8f3SzOO8BoPOMYBFgfZaqTUZqgGu+a0+Fng=="
   "resolved" "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-1.8.1.tgz"
@@ -173,6 +244,13 @@
   "version" "1.3.5"
   dependencies:
     "@types/node" "*"
+
+"@types/autosize@^3.0.7":
+  "integrity" "sha512-D46m3aBNg81QKk9ZigmDFuhXUkD4IpBSrkGUKpYo2QBETbUjqEe8msXNCcECaXLXv1O4ppdMpizgFRzpfrgOxA=="
+  "resolved" "https://registry.npmjs.org/@types/autosize/-/autosize-3.0.7.tgz"
+  "version" "3.0.7"
+  dependencies:
+    "@types/jquery" "*"
 
 "@types/body-parser@*":
   "integrity" "sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g=="
@@ -243,6 +321,13 @@
   "resolved" "https://registry.npmjs.org/@types/http-errors/-/http-errors-1.8.2.tgz"
   "version" "1.8.2"
 
+"@types/jquery@*":
+  "integrity" "sha512-X1gtMRMbziVQkErhTQmSe2jFwwENA/Zr+PprCkF63vFq+Yt5PZ4AlKqgmeNlwgn7dhsXEK888eIW2520EpC+xg=="
+  "resolved" "https://registry.npmjs.org/@types/jquery/-/jquery-3.5.14.tgz"
+  "version" "3.5.14"
+  dependencies:
+    "@types/sizzle" "*"
+
 "@types/keygrip@*":
   "integrity" "sha512-GJhpTepz2udxGexqos8wgaBx4I/zWIDPh/KOGEwAqtuGDkOUJu5eFvwmdBX4AmB8Odsr+9pHCQqiAqDL/yKMKw=="
   "resolved" "https://registry.npmjs.org/@types/keygrip/-/keygrip-1.0.2.tgz"
@@ -308,6 +393,11 @@
   dependencies:
     "@types/mime" "^1"
     "@types/node" "*"
+
+"@types/sizzle@*":
+  "integrity" "sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ=="
+  "resolved" "https://registry.npmjs.org/@types/sizzle/-/sizzle-2.3.3.tgz"
+  "version" "2.3.3"
 
 "@types/trusted-types@^2.0.2":
   "integrity" "sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg=="
@@ -446,6 +536,11 @@
   "version" "2.6.4"
   dependencies:
     "lodash" "^4.17.14"
+
+"autosize@4.0.2":
+  "integrity" "sha512-jnSyH2d+qdfPGpWlcuhGiHmqBJ6g3X+8T+iRwFrHPLVcdoGJE/x6Qicm6aDHfTsbgZKxyV8UU/YB2p4cjKDRRA=="
+  "resolved" "https://registry.npmjs.org/autosize/-/autosize-4.0.2.tgz"
+  "version" "4.0.2"
 
 "binary-extensions@^2.0.0":
   "integrity" "sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA=="

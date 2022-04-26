@@ -1,2 +1,2 @@
-export { LitElementForm } from "./Form/LitElementForm";
-export { LitElementApp } from "./App/LitElementApp";
+export { LitElementForm } from "./components/Form/LitElementForm";
+export { LitElementApp } from "./components/App/LitElementApp";

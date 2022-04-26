@@ -17,11 +17,16 @@
     "prepublish": "tsc && npm run analyze -- --exclude dist"
   },
   "dependencies": {
+    "@lion/ajax": "^0.14.0",
     "@lion/button": "^0.17.0",
     "@lion/core": "^0.22.0",
+    "@lion/dialog": "^0.15.0",
+    "@lion/form": "^0.14.0",
     "@lion/form-core": "^0.17.0",
     "@lion/icon": "^0.15.0",
     "@lion/input": "^0.17.0",
+    "@lion/textarea": "^0.15.0",
+    "@lion/validate-messages": "^0.9.0",
     "@reduxjs/toolkit": "^1.8.1",
     "lit": "^2.0.2",
     "pwa-helpers": "^0.9.1",
