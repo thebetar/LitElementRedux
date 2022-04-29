@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import { store } from "../../store";
+import { store } from "../../store/index";
 import { deleteBlogPost, setEditId } from "../../store/actions";
 import { BlogPost } from "../App/LitElementApp";
 
@@ -19,8 +19,9 @@ export class LitElementListItem extends LitElement {
 		span {
 			float: right;
 			font-size: 18px;
-			width: 24px;
-			height: 24px;
+			width: 20px;
+			height: 20px;
+			padding: 4px;
 			border-radius: 25%;
 			text-align: center;
 			cursor: pointer;

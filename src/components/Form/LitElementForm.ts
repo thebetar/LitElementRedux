@@ -1,19 +1,19 @@
 import { html, css, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement } from "lit/decorators.js";
+import { connect } from "pwa-helpers";
 
-import { RequiredForm } from "../../validators/Required";
-import { MinLengthForm } from "../../validators/MinLength";
-import { store } from "../../store";
+import { store } from "../../store/index";
 import { addBlogPost, editBlogPost } from "../../store/actions";
 import { LogMixin } from "../../mixins/LogMixin";
+import { BlogPost } from "../App/LitElementApp";
+import RequiredForm from "../../validators/RequiredForm";
+import "../Svg/PaperPlane";
 
 import "@lion/input/define";
 import "@lion/button/define";
 import "@lion/form/define";
-import "@lion/textarea/define";
 import "@lion/dialog/define";
-import { connect } from "pwa-helpers";
-import { BlogPost } from "../App/LitElementApp";
+import "@lion/textarea/define";
 
 @customElement("lit-element-form")
 export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
@@ -95,7 +95,7 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 	}
 
 	get isValid(): boolean {
-		return this.isTitleValid && this.isDescriptionValid;
+		return true; // this.isTitleValid && this.isDescriptionValid;
 	}
 
 	handleChange(target: any, type: string): void {
@@ -111,7 +111,7 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 
 	async handleSubmit(): Promise<void> {
 		if (this.title === "" || this.description === "") {
-			alert("Niet alle waardes gevuld...");
+			this.errorMessage = "Niet alle waardes gevuld";
 			return;
 		}
 
@@ -134,6 +134,7 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 
 		this.title = "";
 		this.description = "";
+		this.editId = 0;
 	}
 
 	stateChanged({
@@ -173,10 +174,7 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 								@model-value-changed=${({ target }: any) =>
 									this.handleChange(target, "title")}
 								help-text="De titel van de blog"
-								.validators="${[
-									new RequiredForm(),
-									new MinLengthForm(4),
-								]}"
+								.validators="${[new RequiredForm()]}"
 							>
 								<label slot="label"> Titel </label>
 							</lion-input>
@@ -187,10 +185,6 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 								@model-value-changed=${({ target }: any) =>
 									this.handleChange(target, "description")}
 								help-text="De Beschrijving van de blog"
-								.validators="${[
-									new RequiredForm(),
-									new MinLengthForm(8),
-								]}"
 							>
 								<label slot="label"> Beschrijving </label>
 							</lion-textarea>
@@ -202,6 +196,7 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 						style="${!this.isValid ? "background-color: #ddd" : ""}"
 					>
 						Send
+						<paper-plane-svg></paper-plane-svg>
 					</lion-button>
 				</div>
 			</div>

@@ -2,7 +2,7 @@ import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { connect } from "pwa-helpers";
 
-import { store } from "../../store";
+import { store } from "../../store/index";
 import { BlogPost } from "../App/LitElementApp";
 
 import "./LitElementListItem";

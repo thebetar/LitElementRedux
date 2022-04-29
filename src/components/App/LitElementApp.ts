@@ -2,7 +2,7 @@ import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 
 import { getBlogPosts } from "../../store/actions";
-import { store } from "../../store";
+import { store } from "../../store/index";
 
 import "../Form/LitElementForm";
 import "../List/LitElementList";

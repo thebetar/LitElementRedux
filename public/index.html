@@ -8,18 +8,13 @@
   </script>
   <meta charset="utf-8">
 <body>
-  <div id="demo"></div>
+  <div id="app"></div>
 
   <script type="module">
-    import { html, render } from 'lit';
-    import '../dist/src/components/App/LitElementApp.js';
+    import './bundle.js';
 
-    render(
-      html`
-        <lit-element-app></lit-element-app>
-      `,
-      document.querySelector('#demo')
-    );
+    const AppElement = document.createElement("lit-element-app");
+    document.querySelector('div#app').appendChild(AppElement);
   </script>
 </body>
 </html>
