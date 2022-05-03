@@ -6,7 +6,6 @@ import { store } from "../../store/index";
 import { addBlogPost, editBlogPost } from "../../store/actions";
 import { LogMixin } from "../../mixins/LogMixin";
 import { BlogPost } from "../App/LitElementApp";
-import RequiredForm from "../../validators/RequiredForm";
 import "../Svg/PaperPlane";
 
 import "@lion/input/define";
@@ -162,23 +161,24 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 				<div>
 					<h2>Voeg blog toe</h2>
 					${this.errorMessage
-						? html`<div class="error-message">
+						? html`<div id="error-message" class="error-message">
 								${this.errorMessage}
 						  </div>`
 						: null}
 					<lion-form>
 						<form>
 							<lion-input
+								id="title-input"
 								name="titel"
 								.modelValue=${this.title}
 								@model-value-changed=${({ target }: any) =>
 									this.handleChange(target, "title")}
 								help-text="De titel van de blog"
-								.validators="${[new RequiredForm()]}"
 							>
 								<label slot="label"> Titel </label>
 							</lion-input>
 							<lion-textarea
+								id="desc-input"
 								name="beschrijving"
 								rows="${6}"
 								.modelValue=${this.description}
@@ -191,12 +191,12 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 						</form>
 					</lion-form>
 					<lion-button
+						id="form-submit"
 						@click="${this.handleSubmit}"
 						?disabled="${!this.isValid}"
 						style="${!this.isValid ? "background-color: #ddd" : ""}"
 					>
 						Send
-						<paper-plane-svg></paper-plane-svg>
 					</lion-button>
 				</div>
 			</div>

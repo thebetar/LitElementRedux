@@ -1,11 +1,6 @@
 {
   "blogs": [
     {
-      "title": "Test bericht 3",
-      "description": "Dit is het derde test bericht...",
-      "id": 3
-    },
-    {
       "id": 4,
       "title": "Test bericht",
       "description": "Dit is een test bericht!!!"
@@ -14,11 +9,6 @@
       "title": "Test bericht 4",
       "description": "Dit is het vierde test bericht.",
       "id": 5
-    },
-    {
-      "title": "Test bericht",
-      "description": "Dit is een test bericht",
-      "id": 6
     }
   ]
 }

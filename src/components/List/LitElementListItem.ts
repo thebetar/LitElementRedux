@@ -42,8 +42,8 @@ export class LitElementListItem extends LitElement {
 		console.log(`Blog with id ${this.blog?.id} rendered`);
 	}
 
-	deleteBlog(id: number): void {
-		store.dispatch(deleteBlogPost(id));
+	async deleteBlog(id: number): Promise<void> {
+		store.dispatch(await deleteBlogPost(id));
 	}
 
 	setEditId(id: number): void {
@@ -51,12 +51,18 @@ export class LitElementListItem extends LitElement {
 	}
 
 	render() {
-		return html`<li>
+		return html`<li name="list-item">
 			<b>${this.blog?.title}</b>
-			<span @click="${() => this.deleteBlog(this.blog?.id || 0)}">
+			<span
+				name="list-item-delete"
+				@click="${() => this.deleteBlog(this.blog?.id || 0)}"
+			>
 				❌
 			</span>
-			<span @click="${() => this.setEditId(this.blog?.id || 0)}">
+			<span
+				name="list-item-edit"
+				@click="${() => this.setEditId(this.blog?.id || 0)}"
+			>
 				✏️
 			</span>
 			<p>${this.blog?.description}</p>

@@ -24,7 +24,7 @@ export const addBlogPost = async (post: BlogPost) => {
 		console.error(error);
 		return {
 			type: ERROR,
-			payload: "Er ging iets fout",
+			payload: "Er ging iets fout bij het toevoegen",
 		};
 	}
 };
@@ -43,29 +43,45 @@ export const editBlogPost = async (id: number, post: BlogPost) => {
 		console.error(error);
 		return {
 			type: ERROR,
-			payload: "Er ging iets fout",
+			payload: "Er ging iets fout bij het aanpassen",
 		};
 	}
 };
 
-export const deleteBlogPost = (id: number) => {
-	ajax.fetchJson(`${BASE_URL}/${id}`, {
-		method: "DELETE",
-	});
-	return {
-		type: DELETE_BLOGPOST,
-		payload: id,
-	};
+export const deleteBlogPost = async (id: number) => {
+	try {
+		await ajax.fetchJson(`${BASE_URL}/${id}`, {
+			method: "DELETE",
+		});
+		return {
+			type: DELETE_BLOGPOST,
+			payload: id,
+		};
+	} catch (error) {
+		console.error(error);
+		return {
+			type: ERROR,
+			payload: "Er ging iets fout bij het verwijderen",
+		};
+	}
 };
 
 export const getBlogPosts = async () => {
-	const { body } = await ajax.fetchJson(BASE_URL, {
-		method: "GET",
-	});
-	return {
-		type: SET_BLOGPOSTS,
-		payload: body,
-	};
+	try {
+		const { body } = await ajax.fetchJson(BASE_URL, {
+			method: "GET",
+		});
+		return {
+			type: SET_BLOGPOSTS,
+			payload: body,
+		};
+	} catch (error) {
+		console.error(error);
+		return {
+			type: ERROR,
+			payload: "Er ging iets fout bij het ophalen",
+		};
+	}
 };
 
 export const setEditId = (id: number) => {

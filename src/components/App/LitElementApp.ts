@@ -53,7 +53,7 @@ export class LitElementApp extends LitElement {
 	render() {
 		return html`<div class="container">
 			<div class="container-header">
-				<h1>Super coole blog app</h1>
+				<h1 id="app-title">Super coole blog app</h1>
 				<h3>Tijd: ${this.clock.value}</h3>
 			</div>
 			<div class="flex-box">
