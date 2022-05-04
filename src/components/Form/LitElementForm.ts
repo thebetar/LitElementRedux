@@ -6,7 +6,6 @@ import { store } from "../../store/index";
 import { addBlogPost, editBlogPost } from "../../store/actions";
 import { LogMixin } from "../../mixins/LogMixin";
 import { BlogPost } from "../App/LitElementApp";
-import "../Svg/PaperPlane";
 
 import "@lion/input/define";
 import "@lion/button/define";
@@ -77,8 +76,6 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 	static properties = {
 		title: { type: String },
 		description: { type: String },
-		isTitleValid: { type: Boolean },
-		isDescriptionValid: { type: Boolean },
 		errorMessage: { type: String },
 		editId: { type: Number },
 	};
@@ -87,23 +84,15 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 		super();
 		this.title = "";
 		this.description = "";
-		this.isTitleValid = false;
-		this.isDescriptionValid = false;
 		this.errorMessage = "";
 		this.editId = 0;
-	}
-
-	get isValid(): boolean {
-		return true; // this.isTitleValid && this.isDescriptionValid;
 	}
 
 	handleChange(target: any, type: string): void {
 		if (type === "title") {
 			this.title = target?.value;
-			this.isTitleValid = target?.hasFeedbackFor.length === 0;
 		} else if (type === "description") {
 			this.description = target?.value;
-			this.isDescriptionValid = target?.hasFeedbackFor.length === 0;
 		}
 		this.requestUpdate();
 	}
@@ -157,7 +146,7 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 
 	render() {
 		return html`
-			<div class="card">
+			<div id="lit-element-form-card" class="card">
 				<div>
 					<h2>Voeg blog toe</h2>
 					${this.errorMessage
@@ -190,12 +179,7 @@ export class LitElementForm extends LogMixin(connect(store)(LitElement)) {
 							</lion-textarea>
 						</form>
 					</lion-form>
-					<lion-button
-						id="form-submit"
-						@click="${this.handleSubmit}"
-						?disabled="${!this.isValid}"
-						style="${!this.isValid ? "background-color: #ddd" : ""}"
-					>
+					<lion-button id="form-submit" @click="${this.handleSubmit}">
 						Send
 					</lion-button>
 				</div>

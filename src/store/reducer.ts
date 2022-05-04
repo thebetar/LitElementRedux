@@ -8,14 +8,20 @@ import {
 	SET_EDIT_ID,
 } from "./actions";
 
-const INITIAL_STATE = {
-	blogs: [] as BlogPost[],
-	error: "" as string,
-	editId: 0 as number,
+export const INITIAL_STATE: Store = {
+	blogs: [],
+	error: "",
+	editId: 0,
+};
+
+export type Store = {
+	blogs: BlogPost[];
+	error: string;
+	editId: number;
 };
 
 export const reducer = (
-	state = INITIAL_STATE,
+	state: Store = INITIAL_STATE,
 	action: { type: String; payload: any }
 ) => {
 	switch (action.type) {

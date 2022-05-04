@@ -33,10 +33,8 @@ export class LitElementList extends connect(store)(LitElement) {
 	})
 	blogs: BlogPost[] = [];
 
-	stateChanged(state: any): void {
-		console.log(state);
+	stateChanged(state: { blogs: BlogPost[] }): void {
 		this.blogs = state.blogs;
-		console.log(this.blogs);
 		this.requestUpdate();
 	}
 

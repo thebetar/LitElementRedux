@@ -6,7 +6,7 @@ import { store } from "../../store/index";
 
 import "../Form/LitElementForm";
 import "../List/LitElementList";
-import ClockController from "../../controllers/ClockController";
+import { ClockController } from "../../controllers/ClockController";
 
 export type BlogPost = {
 	id?: number;
@@ -46,8 +46,8 @@ export class LitElementApp extends LitElement {
 
 	private clock = new ClockController(this);
 
-	firstUpdated(): void {
-		getBlogPosts().then((action) => store.dispatch(action));
+	firstUpdated(): Promise<any> {
+		return getBlogPosts().then((action) => store.dispatch(action));
 	}
 
 	render() {

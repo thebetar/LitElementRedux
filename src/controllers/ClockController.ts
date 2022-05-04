@@ -1,6 +1,6 @@
 import { ReactiveController, ReactiveControllerHost } from "lit";
 
-export default class ClockController implements ReactiveController {
+export class ClockController implements ReactiveController {
 	host: ReactiveControllerHost;
 
 	value = "LADEN...";

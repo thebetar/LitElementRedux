@@ -14,7 +14,8 @@
 		"analyze": "cem analyze --litelement",
 		"start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"rollup -c rollup.config.js -w --environment BUILD:development\" \"wds\"",
 		"build": "tsc && npm run analyze -- --exclude dist",
-		"prepublish": "tsc && npm run analyze -- --exclude dist"
+		"prepublish": "tsc && npm run analyze -- --exclude dist",
+		"test": "web-test-runner"
 	},
 	"dependencies": {
 		"@lion/ajax": "^0.14.0",
@@ -38,10 +39,16 @@
 		"@babel/core": "^7.17.9",
 		"@babel/preset-env": "^7.16.11",
 		"@custom-elements-manifest/analyzer": "^0.4.17",
+		"@esm-bundle/chai": "^4.3.4-fix.0",
 		"@open-wc/building-rollup": "^2.0.1",
+		"@open-wc/testing": "^3.1.4",
 		"@types/animejs": "^3.1.4",
 		"@web/dev-server": "^0.1.28",
+		"@web/dev-server-esbuild": "^0.3.0",
+		"@web/dev-server-import-maps": "^0.0.6",
+		"@web/test-runner": "^0.13.27",
 		"concurrently": "^5.3.0",
+		"sinon": "^13.0.2",
 		"tslib": "^2.3.1",
 		"typescript": "^4.5.2"
 	},

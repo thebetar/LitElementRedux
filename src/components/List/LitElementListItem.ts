@@ -37,34 +37,28 @@ export class LitElementListItem extends LitElement {
 	})
 	blog: BlogPost | null = null;
 
-	connectedCallback(): void {
+	connectedCallback(): string {
 		super.connectedCallback();
-		console.log(`Blog with id ${this.blog?.id} rendered`);
+		const LOG_TEXT = `Blog with id ${this.blog?.id} rendered`;
+		console.log(LOG_TEXT);
+		return LOG_TEXT;
 	}
 
-	async deleteBlog(id: number): Promise<void> {
-		store.dispatch(await deleteBlogPost(id));
+	async deleteBlog(): Promise<void> {
+		store.dispatch(await deleteBlogPost(this.blog?.id || 0));
 	}
 
-	setEditId(id: number): void {
-		store.dispatch(setEditId(id));
+	setEditId(): void {
+		store.dispatch(setEditId(this.blog?.id || 0));
 	}
 
 	render() {
 		return html`<li name="list-item">
 			<b>${this.blog?.title}</b>
-			<span
-				name="list-item-delete"
-				@click="${() => this.deleteBlog(this.blog?.id || 0)}"
-			>
+			<span name="list-item-delete" @click="${this.deleteBlog}">
 				❌
 			</span>
-			<span
-				name="list-item-edit"
-				@click="${() => this.setEditId(this.blog?.id || 0)}"
-			>
-				✏️
-			</span>
+			<span name="list-item-edit" @click="${this.setEditId}"> ✏️ </span>
 			<p>${this.blog?.description}</p>
 		</li>`;
 	}
