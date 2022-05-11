@@ -1,5 +1,5 @@
-import { esbuildPlugin } from "@web/dev-server-esbuild";
-import { importMapsPlugin } from "@web/dev-server-import-maps";
+import { esbuildPlugin } from '@web/dev-server-esbuild';
+import { importMapsPlugin } from '@web/dev-server-import-maps';
 
 export default {
 	testRunnerHtml: (testFramework) =>
@@ -9,28 +9,27 @@ export default {
 			<script type="module" src="${testFramework}"></script>
 		</body>
     </html>`,
-	files: ["src/**/*.spec.ts"],
+	files: ['src/**/*.spec.ts'],
 	concurrency: 10,
 	nodeResolve: true,
 	coverage: true,
 	coverageConfig: {
-		exclude: ["./src/mocks/**/*", "./node_modules/**/*"],
+		exclude: ['./src/mocks/**/*', './node_modules/**/*'],
 		threshold: {
-			statements: 90,
-		},
+			statements: 90
+		}
 	},
-	watch: true,
 	silent: true,
 	plugins: [
 		importMapsPlugin({
 			inject: {
 				importMap: {
 					imports: {
-						"@lion/ajax": "./src/mocks/ajax.ts",
-					},
-				},
-			},
+						'@lion/ajax': './src/mocks/ajax.ts'
+					}
+				}
+			}
 		}),
-		esbuildPlugin({ ts: true }),
-	],
+		esbuildPlugin({ ts: true })
+	]
 };

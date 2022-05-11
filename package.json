@@ -13,7 +13,8 @@
 		"analyze": "cem analyze --litelement",
 		"start": "rimraf dist && concurrently -k -r \"rollup -c rollup.config.js -w\" \"wds\"",
 		"build": "rimraf dist && rollup -c rollup.config.js",
-		"test": "web-test-runner"
+		"test": "web-test-runner --watch",
+		"test:ci": "web-test-runner"
 	},
 	"dependencies": {
 		"@lion/ajax": "^0.14.0",
