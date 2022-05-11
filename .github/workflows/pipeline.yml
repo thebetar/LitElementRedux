@@ -1,7 +1,7 @@
 name: lit-element-lion-pipeline
 on: [push]
 jobs:
-    run-unit-tests:
+    run-tests:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -11,7 +11,14 @@ jobs:
                   node-version: '14'
             - name: Install
               run: npm ci
+            - name: Build
+              run: npm run build
             - name: (Unit) Test
               run: npm run test:ci
-            # - name: (E2E) Test
-            #   run: npm run e2e:ci
+            - name: (Cypress) Test
+              uses: cypress-io/github-action@v2
+              with:
+                  install: false
+                  start: npm run start:ci
+                  wait-on: 'http://localhost:8000'
+                  wait-on-timeout: 120

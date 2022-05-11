@@ -12,10 +12,11 @@
 	"scripts": {
 		"analyze": "cem analyze --litelement",
 		"start": "rimraf dist && concurrently -k -r \"rollup -c rollup.config.js -w\" \"wds\"",
-		"build": "rimraf dist && rollup -c rollup.config.js",
+		"start:ci": "wds",
+		"build": "rimraf dist && tsc && rollup -c rollup.config.js",
 		"test": "web-test-runner --watch",
 		"test:ci": "web-test-runner --silent",
-		"e2e:ci": "concurrently \"npm start\" \"cd server && npm start\" \"wait-on http://localhost:8000 && wait-on http://localhost:3000 && cypress run\""
+		"cypress": "cypress run"
 	},
 	"dependencies": {
 		"@lion/ajax": "^0.14.0",

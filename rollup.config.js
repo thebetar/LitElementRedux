@@ -3,6 +3,7 @@ import { createSpaConfig } from '@open-wc/building-rollup';
 import typescript from '@rollup/plugin-typescript';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
+import tsconfig from './tsconfig.json';
 
 const config = createSpaConfig({
 	injectServiceWorker: false
@@ -10,8 +11,9 @@ const config = createSpaConfig({
 
 export default merge(config, {
 	input: './public/index.html',
-	output: {
-		format: 'cjs'
-	},
-	plugins: [typescript(), nodeResolve(), babel({ babelHelpers: 'bundled' })]
+	plugins: [
+		typescript({ typescript: require('typescript') }),
+		nodeResolve(),
+		babel({ babelHelpers: 'bundled' })
+	]
 });

@@ -16,7 +16,7 @@ export default {
 	coverageConfig: {
 		exclude: ['./src/mocks/**/*', './node_modules/**/*'],
 		threshold: {
-			statements: 90
+			statements: 80
 		}
 	},
 	silent: true,
