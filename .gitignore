@@ -20,8 +20,10 @@
 # build
 /_site/
 /dist/
-/out-tsc/
+/dist/
 
 storybook-static
 custom-elements.json
 tsconfig.tsbuildinfo
+
+.rollup.cache

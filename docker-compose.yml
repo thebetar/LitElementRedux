@@ -1,0 +1,13 @@
+version: '2'
+services:
+    web:
+        build:
+            context: ./
+            args:
+                - LIT_BASE_URL=$CLIENT_API_BASE_URL
+        ports:
+            - '8000:80'
+    server:
+        build: ./server
+        ports:
+            - '3000:3000'

@@ -1,30 +1,30 @@
-import { BlogPost } from "../components/App/LitElementApp";
-import { ajax } from "@lion/ajax";
+import { BlogPost } from '../components/App/LitElementApp';
+import { ajax } from '@lion/ajax';
 
-export const ADD_BLOGPOST = "ADD_BLOGPOST";
-export const EDIT_BLOGPOST = "EDIT_BLOGPOST";
-export const DELETE_BLOGPOST = "DELETE_BLOGPOST";
-export const SET_BLOGPOSTS = "SET_BLOGPOSTS";
-export const SET_EDIT_ID = "SET_EDIT_ID";
-export const ERROR = "ERROR";
+export const ADD_BLOGPOST = 'ADD_BLOGPOST';
+export const EDIT_BLOGPOST = 'EDIT_BLOGPOST';
+export const DELETE_BLOGPOST = 'DELETE_BLOGPOST';
+export const SET_BLOGPOSTS = 'SET_BLOGPOSTS';
+export const SET_EDIT_ID = 'SET_EDIT_ID';
+export const ERROR = 'ERROR';
 
-const BASE_URL = "http://localhost:3000/api/blogs";
+const BASE_URL = process.env.LIT_BASE_URL || 'http://localhost:3000/api/blogs';
 
 export const addBlogPost = async (post: BlogPost) => {
 	try {
 		const { body } = await ajax.fetchJson(BASE_URL, {
-			method: "POST",
-			body: post,
+			method: 'POST',
+			body: post
 		});
 		return {
 			type: ADD_BLOGPOST,
-			payload: body,
+			payload: body
 		};
 	} catch (error) {
 		console.error(error);
 		return {
 			type: ERROR,
-			payload: "Er ging iets fout bij het toevoegen",
+			payload: 'Er ging iets fout bij het toevoegen'
 		};
 	}
 };
@@ -32,18 +32,18 @@ export const addBlogPost = async (post: BlogPost) => {
 export const editBlogPost = async (id: number, post: BlogPost) => {
 	try {
 		const { body } = await ajax.fetchJson(`${BASE_URL}/${id}`, {
-			method: "PUT",
-			body: post,
+			method: 'PUT',
+			body: post
 		});
 		return {
 			type: EDIT_BLOGPOST,
-			payload: body,
+			payload: body
 		};
 	} catch (error) {
 		console.error(error);
 		return {
 			type: ERROR,
-			payload: "Er ging iets fout bij het aanpassen",
+			payload: 'Er ging iets fout bij het aanpassen'
 		};
 	}
 };
@@ -51,17 +51,17 @@ export const editBlogPost = async (id: number, post: BlogPost) => {
 export const deleteBlogPost = async (id: number) => {
 	try {
 		await ajax.fetchJson(`${BASE_URL}/${id}`, {
-			method: "DELETE",
+			method: 'DELETE'
 		});
 		return {
 			type: DELETE_BLOGPOST,
-			payload: id,
+			payload: id
 		};
 	} catch (error) {
 		console.error(error);
 		return {
 			type: ERROR,
-			payload: "Er ging iets fout bij het verwijderen",
+			payload: 'Er ging iets fout bij het verwijderen'
 		};
 	}
 };
@@ -69,17 +69,17 @@ export const deleteBlogPost = async (id: number) => {
 export const getBlogPosts = async () => {
 	try {
 		const { body } = await ajax.fetchJson(BASE_URL, {
-			method: "GET",
+			method: 'GET'
 		});
 		return {
 			type: SET_BLOGPOSTS,
-			payload: body,
+			payload: body
 		};
 	} catch (error) {
 		console.error(error);
 		return {
 			type: ERROR,
-			payload: "Er ging iets fout bij het ophalen",
+			payload: 'Er ging iets fout bij het ophalen'
 		};
 	}
 };
@@ -87,6 +87,6 @@ export const getBlogPosts = async () => {
 export const setEditId = (id: number) => {
 	return {
 		type: SET_EDIT_ID,
-		payload: id,
+		payload: id
 	};
 };

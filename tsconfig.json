@@ -15,13 +15,13 @@
 		"moduleResolution": "node",
 		"noEmitOnError": true,
 		"noImplicitThis": true,
-		"outDir": "./out-tsc",
+		"outDir": "./dist",
 		"rootDir": "./src",
 		"strict": true,
 		"sourceMap": true,
 		"skipLibCheck": true,
 		"suppressImplicitAnyIndexErrors": true,
-		"target": "esnext"
+		"target": "ES2018"
 	},
 	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules/**/*"]

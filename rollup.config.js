@@ -1,19 +1,17 @@
-import { createBasicConfig } from '@open-wc/building-rollup';
+import merge from 'deepmerge';
+import { createSpaConfig } from '@open-wc/building-rollup';
+import typescript from '@rollup/plugin-typescript';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import babel from '@rollup/plugin-babel';
 
-const config = createBasicConfig();
+const config = createSpaConfig({
+	injectServiceWorker: false
+});
 
-delete config.output.dir;
-
-export default {
-	...config,
-	input: 'out-tsc/index.js',
+export default merge(config, {
+	input: './public/index.html',
 	output: {
-		...config.output,
-		file: 'public/bundle.js'
+		format: 'cjs'
 	},
-	watch: {
-		...config.watch,
-		include: 'out-tsc/**/*'
-	},
-	treekshake: false
-};
+	plugins: [typescript(), nodeResolve(), babel({ babelHelpers: 'bundled' })]
+});
