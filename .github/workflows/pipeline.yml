@@ -5,8 +5,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - name: Install Node.js
+              uses: actions/setup-node@v3
               with:
                   node-version: '14'
-            - run: npm install
-            - run: npm run test:ci
+            - name: Install
+              run: npm ci
+            - name: (Unit) Test
+              run: npm run test:ci
+            # - name: (E2E) Test
+            #   run: npm run e2e:ci

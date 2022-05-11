@@ -14,7 +14,8 @@
 		"start": "rimraf dist && concurrently -k -r \"rollup -c rollup.config.js -w\" \"wds\"",
 		"build": "rimraf dist && rollup -c rollup.config.js",
 		"test": "web-test-runner --watch",
-		"test:ci": "web-test-runner"
+		"test:ci": "web-test-runner --silent",
+		"e2e:ci": "concurrently \"npm start\" \"cd server && npm start\" \"wait-on http://localhost:8000 && wait-on http://localhost:3000 && cypress run\""
 	},
 	"dependencies": {
 		"@lion/ajax": "^0.14.0",
@@ -53,7 +54,8 @@
 		"rollup-plugin-terser": "^7.0.2",
 		"sinon": "^13.0.2",
 		"tslib": "^2.3.1",
-		"typescript": "^4.5.2"
+		"typescript": "^4.5.2",
+		"wait-on": "^6.0.1"
 	},
 	"customElements": "custom-elements.json"
 }

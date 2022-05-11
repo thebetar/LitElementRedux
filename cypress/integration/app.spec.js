@@ -1,250 +1,250 @@
 const MOCK_BLOGS = [
 	{
 		id: 3,
-		title: "Test bericht",
-		description: "Dit is het eerste test bericht...",
+		title: 'Test bericht',
+		description: 'Dit is het eerste test bericht...'
 	},
 	{
 		id: 2,
-		title: "Test bericht 2",
-		description: "Dit is het tweede test bericht",
+		title: 'Test bericht 2',
+		description: 'Dit is het tweede test bericht'
 	},
 	{
 		id: 3,
-		title: "Test bericht 3",
-		description: "Dit is het derde test bericht.",
-	},
+		title: 'Test bericht 3',
+		description: 'Dit is het derde test bericht.'
+	}
 ];
 
-describe("Blog app", () => {
+describe('Blog app', () => {
 	beforeEach(() => {
 		cy.intercept(
 			{
-				method: "GET",
-				url: "http://localhost:3000/api/blogs",
+				method: 'GET',
+				url: 'http://localhost:3000/api/blogs'
 			},
 			{
 				statusCode: 200,
-				body: MOCK_BLOGS,
+				body: MOCK_BLOGS
 			}
-		).as("getBlogs");
+		).as('getBlogs');
 
-		cy.visit("http://localhost:8000/public/");
+		cy.visit('http://localhost:8000');
 	});
 
-	it("Shows application", () => {
-		cy.get("#app-title").should("contain", "Super coole blog app");
+	it('Shows application', () => {
+		cy.get('#app-title').should('contain', 'Super coole blog app');
 	});
 
-	describe("Gets blogs", () => {
-		it("and succeeds", () => {
-			cy.wait("@getBlogs");
+	describe('Gets blogs', () => {
+		it('and succeeds', () => {
+			cy.wait('@getBlogs');
 
-			cy.get('li[name="list-item"]').should("have.length", 3);
+			cy.get('li[name="list-item"]').should('have.length', 3);
 		});
 
-		it("with error", () => {
+		it('with error', () => {
 			cy.intercept(
 				{
-					method: "GET",
-					url: "http://localhost:3000/api/blogs",
+					method: 'GET',
+					url: 'http://localhost:3000/api/blogs'
 				},
 				{
 					statusCode: 500,
-					body: MOCK_BLOGS,
+					body: MOCK_BLOGS
 				}
-			).as("getBlogs");
+			).as('getBlogs');
 
-			cy.visit("http://localhost:8000/public/");
+			cy.visit('http://localhost:8000');
 
-			cy.get("#error-message").should(
-				"contain",
-				"Er ging iets fout bij het ophalen"
+			cy.get('#error-message').should(
+				'contain',
+				'Er ging iets fout bij het ophalen'
 			);
 		});
 	});
 
-	describe("Adds blog", () => {
-		it("and succeeds", () => {
+	describe('Adds blog', () => {
+		it('and succeeds', () => {
 			cy.intercept(
 				{
-					method: "POST",
-					url: "http://localhost:3000/api/blogs",
+					method: 'POST',
+					url: 'http://localhost:3000/api/blogs'
 				},
 				{
 					statusCode: 200,
-					body: {},
+					body: {}
 				}
-			).as("postBlog");
+			).as('postBlog');
 
-			const TITLE = "[Cypress] test blog";
-			cy.get("#title-input").type(TITLE).should("have.value", TITLE);
+			const TITLE = '[Cypress] test blog';
+			cy.get('#title-input').type(TITLE).should('have.value', TITLE);
 
-			const DESCRIPTION = "Deze tekst is getypt door cypress";
-			cy.get("#desc-input")
+			const DESCRIPTION = 'Deze tekst is getypt door cypress';
+			cy.get('#desc-input')
 				.type(DESCRIPTION)
-				.should("have.value", DESCRIPTION);
+				.should('have.value', DESCRIPTION);
 
-			cy.get("#form-submit").click();
+			cy.get('#form-submit').click();
 
-			cy.wait("@postBlog").its("request.body").should("deep.equal", {
+			cy.wait('@postBlog').its('request.body').should('deep.equal', {
 				title: TITLE,
-				description: DESCRIPTION,
+				description: DESCRIPTION
 			});
 		});
 
-		it("with no values", () => {
-			cy.get("#form-submit").click();
+		it('with no values', () => {
+			cy.get('#form-submit').click();
 
-			cy.get("#error-message").should(
-				"contain",
-				"Niet alle waardes gevuld"
+			cy.get('#error-message').should(
+				'contain',
+				'Niet alle waardes gevuld'
 			);
 		});
 
-		it("with error", () => {
+		it('with error', () => {
 			cy.intercept(
 				{
-					method: "POST",
-					url: "http://localhost:3000/api/blogs",
+					method: 'POST',
+					url: 'http://localhost:3000/api/blogs'
 				},
 				{
 					statusCode: 500,
-					body: {},
+					body: {}
 				}
-			).as("postBlog");
+			).as('postBlog');
 
-			const TITLE = "[Cypress] test blog";
-			cy.get("#title-input").type(TITLE).should("have.value", TITLE);
+			const TITLE = '[Cypress] test blog';
+			cy.get('#title-input').type(TITLE).should('have.value', TITLE);
 
-			const DESCRIPTION = "Deze tekst is getypt door cypress";
-			cy.get("#desc-input")
+			const DESCRIPTION = 'Deze tekst is getypt door cypress';
+			cy.get('#desc-input')
 				.type(DESCRIPTION)
-				.should("have.value", DESCRIPTION);
+				.should('have.value', DESCRIPTION);
 
-			cy.get("#form-submit").click();
+			cy.get('#form-submit').click();
 
-			cy.wait("@postBlog");
+			cy.wait('@postBlog');
 
-			cy.get("#error-message").should(
-				"contain",
-				"Er ging iets fout bij het toevoegen"
+			cy.get('#error-message').should(
+				'contain',
+				'Er ging iets fout bij het toevoegen'
 			);
 		});
 	});
 
-	describe("Edits blog", () => {
-		it("and succeeds", () => {
+	describe('Edits blog', () => {
+		it('and succeeds', () => {
 			cy.intercept(
 				{
-					method: "PUT",
-					url: "http://localhost:3000/api/blogs/**",
+					method: 'PUT',
+					url: 'http://localhost:3000/api/blogs/**'
 				},
 				{
 					statusCode: 200,
-					body: {},
+					body: {}
 				}
-			).as("putBlog");
+			).as('putBlog');
 
 			cy.get('span[name="list-item-edit"]').first().click();
 
-			const EDIT = " (edit)";
+			const EDIT = ' (edit)';
 
 			const TITLE = `${MOCK_BLOGS[0].title}${EDIT}`;
-			cy.get("#title-input")
-				.should("have.value", MOCK_BLOGS[0].title)
-				.type(" (edit)")
-				.should("have.value", TITLE);
+			cy.get('#title-input')
+				.should('have.value', MOCK_BLOGS[0].title)
+				.type(' (edit)')
+				.should('have.value', TITLE);
 
 			const DESCRIPTION = `${MOCK_BLOGS[0].description}${EDIT}`;
-			cy.get("#desc-input")
-				.should("have.value", MOCK_BLOGS[0].description)
-				.type(" (edit)")
-				.should("have.value", DESCRIPTION);
+			cy.get('#desc-input')
+				.should('have.value', MOCK_BLOGS[0].description)
+				.type(' (edit)')
+				.should('have.value', DESCRIPTION);
 
-			cy.get("#form-submit").click();
+			cy.get('#form-submit').click();
 
-			cy.wait("@putBlog").its("request.body").should("deep.equal", {
+			cy.wait('@putBlog').its('request.body').should('deep.equal', {
 				id: MOCK_BLOGS[0].id,
 				title: TITLE,
-				description: DESCRIPTION,
+				description: DESCRIPTION
 			});
 		});
 
-		it("with error", () => {
+		it('with error', () => {
 			cy.intercept(
 				{
-					method: "PUT",
-					url: "http://localhost:3000/api/blogs/**",
+					method: 'PUT',
+					url: 'http://localhost:3000/api/blogs/**'
 				},
 				{
 					statusCode: 500,
-					body: {},
+					body: {}
 				}
-			).as("putBlog");
+			).as('putBlog');
 
 			cy.get('span[name="list-item-edit"]').first().click();
 
-			const EDIT = " (edit)";
+			const EDIT = ' (edit)';
 
 			const TITLE = `${MOCK_BLOGS[0].title}${EDIT}`;
-			cy.get("#title-input")
-				.should("have.value", MOCK_BLOGS[0].title)
-				.type(" (edit)")
-				.should("have.value", TITLE);
+			cy.get('#title-input')
+				.should('have.value', MOCK_BLOGS[0].title)
+				.type(' (edit)')
+				.should('have.value', TITLE);
 
 			const DESCRIPTION = `${MOCK_BLOGS[0].description}${EDIT}`;
-			cy.get("#desc-input")
-				.should("have.value", MOCK_BLOGS[0].description)
-				.type(" (edit)")
-				.should("have.value", DESCRIPTION);
+			cy.get('#desc-input')
+				.should('have.value', MOCK_BLOGS[0].description)
+				.type(' (edit)')
+				.should('have.value', DESCRIPTION);
 
-			cy.get("#form-submit").click();
+			cy.get('#form-submit').click();
 
-			cy.get("#error-message").should(
-				"contain",
-				"Er ging iets fout bij het aanpassen"
+			cy.get('#error-message').should(
+				'contain',
+				'Er ging iets fout bij het aanpassen'
 			);
 		});
 	});
 
-	describe("Deletes blog", () => {
-		it("and succeeds", () => {
+	describe('Deletes blog', () => {
+		it('and succeeds', () => {
 			cy.intercept(
 				{
-					method: "DELETE",
-					url: "http://localhost:3000/api/blogs/**",
+					method: 'DELETE',
+					url: 'http://localhost:3000/api/blogs/**'
 				},
 				{
 					statusCode: 200,
-					body: {},
+					body: {}
 				}
-			).as("deleteBlog");
+			).as('deleteBlog');
 
 			cy.get('span[name="list-item-delete"]').first().click();
 
-			cy.wait("@deleteBlog");
+			cy.wait('@deleteBlog');
 		});
 
-		it("with error", () => {
+		it('with error', () => {
 			cy.intercept(
 				{
-					method: "DELETE",
-					url: "http://localhost:3000/api/blogs/**",
+					method: 'DELETE',
+					url: 'http://localhost:3000/api/blogs/**'
 				},
 				{
 					statusCode: 500,
-					body: {},
+					body: {}
 				}
-			).as("deleteBlog");
+			).as('deleteBlog');
 
 			cy.get('span[name="list-item-delete"]').first().click();
 
-			cy.wait("@deleteBlog");
+			cy.wait('@deleteBlog');
 
-			cy.get("#error-message").should(
-				"contain",
-				"Er ging iets fout bij het verwijderen"
+			cy.get('#error-message').should(
+				'contain',
+				'Er ging iets fout bij het verwijderen'
 			);
 		});
 	});
